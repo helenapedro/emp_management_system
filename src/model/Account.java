@@ -1,26 +1,25 @@
 package model;
 
-class Account {
-    public final static String CHECKING = "checking";
-    public final static String SAVINGS = "savings";
-    public final static String RETIREMENT = "retirement";
+import enums.AccountType;
+
+abstract class Account {
     private final static double DEFAULT_BALANCE = 0.0;
     private double balance;
-    private String acctType;
     private Employee employee;
 
-    Account(Employee emp, String acctType, double balance) {
+    Account(Employee emp, double balance) {
         employee = emp;
-        this.acctType = acctType;
         this.balance = balance;
     }
 
     Account(Employee emp, String acctType) {
-        this(emp, acctType, DEFAULT_BALANCE);
+        this(emp, DEFAULT_BALANCE);
     }
 
+    public abstract AccountType getAccType();
+
     public String toString() {
-        return "type = " + acctType + ", balance = " + balance;
+        return "type = " + ", balance = " + balance;
     }
 
     public void makeDeposit(double deposit) {
